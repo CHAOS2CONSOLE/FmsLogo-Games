@@ -1,0 +1,263 @@
+﻿to CRTX 
+setpc "red
+seth 0
+rt 45
+fd 45
+bk 90
+fd 45
+lt 90
+fd 45
+bk 90
+fd 45
+setpc "black
+end
+
+to POLJA
+setpensize 5
+repeat 4[
+	repeat 2[
+		fd 100
+		lt 90
+		fd 100 bk 100
+		rt 90]
+	lt 90
+	fd 100
+	rt 180]
+setpensize 1
+end
+
+to postavi :n :ig
+setpensize 5
+ifelse :ig=1 [
+	if :n = 1[
+		pu setxy -50 250 pd crtx
+	]
+	if :n = 2[
+		pu setxy 50 250 pd crtx
+	]
+	if :n = 3[
+		pu setxy 150 250 pd crtx
+	]
+	if :n = 4[
+		pu setxy -50 150 pd crtx
+	]
+	if :n = 5[
+		pu setxy 50 150 pd crtx
+	]
+	if :n = 6[
+		pu setxy 150 150 pd crtx
+	]
+	if :n = 7[
+		pu setxy -50 50 pd crtx
+	]
+	if :n = 8[
+		pu setxy 50 50 pd crtx
+	]
+	if :n = 9[
+		pu setxy 150 50 pd crtx
+	]
+][setpc "blue
+	if :n = 1[
+		pu setxy -50 250 pd circle 40
+	]
+	if :n = 2[
+		pu setxy 50 250 pd circle 40
+	]
+	if :n = 3[
+		pu setxy 150 250 pd circle 40
+	]
+	if :n = 4[
+		pu setxy -50 150 pd circle 40
+	]
+	if :n = 5[
+		pu setxy 50 150 pd circle 40
+	]
+	if :n = 6[
+		pu setxy 150 150 pd circle 40
+	]
+	if :n = 7[
+		pu setxy -50 50 pd circle 40
+	]
+	if :n = 8[
+		pu setxy 50 50 pd circle 40
+	]
+	if :n = 9[
+		pu setxy 150 50 pd circle 40
+	]
+setpc "black]
+end
+
+to PROVJERA :l
+  make "flag 0
+  if (and (item 1 :l)="X (item 2 :l)="X (item 3 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 4 :l)="X (item 5 :l)="X (item 6 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 7 :l)="X (item 8 :l)="X (item 9 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 1 :l)="X (item 5 :l)="X (item 9 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 3 :l)="X (item 5 :l)="X (item 7 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 1 :l)="X (item 4 :l)="X (item 7 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 2 :l)="X (item 5 :l)="X (item 8 :l)="X)[
+    make "flag 1
+  ]
+  if (and (item 3 :l)="X (item 6 :l)="X (item 9 :l)="X)[
+    make "flag 1
+  ]
+
+
+  if (and (item 1 :l)="O (item 2 :l)="O (item 3 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 4 :l)="O (item 5 :l)="O (item 6 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 7 :l)="O (item 8 :l)="O (item 9 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 1 :l)="O (item 5 :l)="O (item 9 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 3 :l)="O (item 5 :l)="O (item 7 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 1 :l)="O (item 4 :l)="O (item 7 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 2 :l)="O (item 5 :l)="O (item 8 :l)="O)[
+    make "flag 2
+  ]
+  if (and (item 3 :l)="O (item 6 :l)="O (item 9 :l)="O)[
+    make "flag 2
+  ]
+
+op :flag
+end
+
+TO replace_item :lst :index :newval
+  MAKE "newlist []
+  make "c (COUNT :lst)  
+  FOR [i 1 :c 1] [
+    IFELSE :i = :index [
+      MAKE "newlist LPUT :newval :newlist 
+    ][
+      MAKE "newlist LPUT (ITEM :i :lst) :newlist  
+    ]
+  ]
+  OP :newlist 
+END
+
+to tictactoe
+cs ct pd ht
+print (se[Iskociti će vam tab u koji trebate upisati sljedeće:])
+print (se['1' ako želite upute za igru])
+print (se['2' ako želite početi igru])
+make "odabir readword
+while [:odabir=1] [
+  print(")
+  print (se[1. igra se zove križić-kružić])
+  print (se[2. vi morate postavljati križiće ili kružiće])
+  print (se[3. ako postavite tri svoja znaka za redom, pobijeđujete])    
+  print (se[4. znakovi mogu biti vertikalno,vodoravno i dijagonalno])
+  print (se[5. uz pomoću brojeva birate na koje ćete polje staviti znak])
+  print(")
+  print(se[Odaberite ponovno])
+  make "odabir readword
+  ]
+polja
+
+pr (sentence "1 "2 "3)
+pr (sentence "4 "5 "6)
+pr (sentence "7 "8 "9)
+make "l [. . . . . . . . . ]
+make "flag 0
+make "cnt 0
+make "flagg 0
+while[:flag=0][
+  make "cnt :cnt+1
+  ;pr :cnt
+  ifelse (remainder :cnt 2)=0[
+    pr(sentence "igrač "2 "postavlja "znak)
+    make "od readword
+    ;pr :od
+    make "flagg 0
+    make "test item :od :l
+    ;pr :test
+    ;pr :flagg
+    ifelse (OR :test="X :test="O) [make "flagg 1] [make "flagg 0]
+    ;pr :flagg
+    while [:flagg=1][
+      pr (sentence "Tamo "je "vec "postavljen "znak)
+      pr (sentence "Ponovite "postavljanje "znaka)
+      make "od readword
+      make "test item :od :l
+      ;pr (item :od :l)
+      ifelse (OR :test="X :test="O) [make "flagg 1] [make "flagg 0]
+    ]
+    postavi :od 2
+    make "l replace_item :l :od "O
+  ][
+    pr(sentence "igrač "1 "postavlja "znak)
+    make "od readword
+    ;pr :od
+    make "flagg 0
+    make "test item :od :l
+    ;pr :test
+    ;pr :flagg
+    ifelse (OR :test="X :test="O) [make "flagg 1] [make "flagg 0]
+    ;pr :flagg
+    while [:flagg=1][
+      pr (sentence "Tamo "je "vec "postavljen "znak)
+      pr (sentence "Ponovite "postavljanje "znaka)
+      make "od readword
+      make "test item :od :l
+      ;pr (item :od :l)
+      ifelse (OR :test="X :test="O) [make "flagg 1] [make "flagg 0]
+    ]
+    postavi :od 1
+    make "l replace_item :l :od "X
+  ]
+  make "flag (provjera :l)
+  ;pr "flag
+  ;pr :flag
+  if :flag = 1 [
+    pr (sentence "Igrač "broj "1 "je "pobijedio) 
+    pu setxy 300 150 pd seth 90 
+    label(sentence "Igrač "broj "1 "je "pobijedio)
+    stop ]
+  if :flag = 2 [
+    pr (sentence "Igrač "broj "2 "je "pobijedio) 
+    pu setxy 300 150 pd seth 90 
+    label(sentence "Igrač "broj "2 "je "pobijedio)
+    stop ]
+  if (and :cnt=9 :flag=0) [
+    make "flag 3 
+    pr (sentence "Izjednačeno "je)
+    pu setxy 300 150 pd seth 90 
+    label(sentence "Završilo "je "izjednačeno )
+    stop ]
+
+]
+end
+
+Make "c 9
+Make "cnt 6
+Make "flag 2
+Make "flagg 0
+Make "l [O . X O X X O . .]
+Make "newlist [O . X O X X O . .]
+Make "od 4
+Make "odabir 2
+Make "r1 ["1 "2 "3]
+Make "r2 ["4 "5 "6]
+Make "r3 ["7 "8 "9]
+Make "test ".
