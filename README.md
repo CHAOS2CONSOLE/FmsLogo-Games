@@ -1,13 +1,18 @@
-# FmsLogo-Games
-Video games in FmsLogo
+# Video games in FmsLogo
+
+### Work in progress!!!
 
 Welcome to Video games in FmsLogo. This was made for a competition held in Croatia.
 
-First of all, if you dont know what is FmsLogo, It is a programming language made by David Costanzo.
+### What is Logo?
+Logo is an old programming laungage made in 1967. 
+It used turtle graphics, which is the system where you have a "turtle" and you can make it move
+
+### What is FmsLogo?
+If you dont know what is FmsLogo, It is a programming language made by David Costanzo.
 FmsLogo evolved from MSWLogo. 
 
-Logo is a type of programming language dedicated to teaching geometry, mainly to children.
-Schools all around the world use it to teach kids geometry better and to better visualize the concepts taught to them.
+
 
 Us three, Filip (aka me), Linda and Mateo, using our knowledge in FmsLogo, made FmsLogo games.
 
