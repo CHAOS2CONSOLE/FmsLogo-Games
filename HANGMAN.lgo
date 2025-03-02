@@ -39,7 +39,8 @@ to hangman
   print(se[Igra pocinje!])
   make "pogodeno []
   MAKE "rijec (ITEM ((RANDOM COUNT :l) + 1) :l)
-  REPEAT COUNT :rijec [MAKE "pogodeno LPUT "." :pogodeno]
+  REPEAT COUNT :rijec [MAKE "pogodeno LPUT "_ :pogodeno]
+  pr :pogodeno
   MAKE "greske 0
   make "pob "NE
   make "flag 0
@@ -66,7 +67,7 @@ to hangman
     print :pogodeno
     MAKE "SLOVA LPUT :POG :SLOVA
     ]
-    if not(memberp "." :pogodeno)[make "flag 1]
+    if not(memberp "_ :pogodeno)[make "flag 1]
     if :greske>6[make "flag 1]
   ]
   pu setxy 400 0 pd seth 90
@@ -200,17 +201,17 @@ end
 
 Make "." "c
 Make "aaa 123
-Make "c 7
-Make "cnt 7
+Make "c 6
+Make "cnt 6
 Make "flag 1
-Make "greske 3
+Make "greske 7
 Make "l [rada medalja trofej uspomena fotografija slika portret pejzaž skulptura mozaik freska tapiserija maska lutka marioneta kazalište drama komedija tragedija opera balet glazba instrument gitara klavir violina bubanj flauta saksofon orkestar dirigent koncert festival predstava scena pozornica publika aplauz zvučnik mikrofon pjesma melodija ritam harmonija akord ton visina trajanje glas vokal solist zbor bend bendžist pjevač tekstopisac skladatelj producent studio snimanje montaža video film kamera režiser scenarist scenarij glumac glumica uloga dijalog monolog replika radnja zaplet vrhunac rasplet kraj početak uvod razvoj opis atmosfera motiv inspiracija ekspresija stil tehnika forma struktura kompozicija boja svjetlost sjena perspektiva dimenzija prostor dubina iluzija stvarnost apstrakcija simbol metafora alegorija ironija humor sarkazam kritika analiza interpretacija dojam refleksija reakcija zaključak mišljenje stav argument dokaz primjer činjenica hipoteza teorija zakon pravilo eksperiment istraživanje metoda procedura strategija cilj plan organizacija sustav struktura funkcija proces evolucija revolucijski tradicionalni inovativni klasični moderni suvremeni budućnost vizija perspektiva mogućnost prilika izazov problem rješenje kompromis alternativa opcija odluka izbor sudbina šansa rizik sigurnost zaštita osiguranje pravilo zakon etika moral odgovornost disciplina red poštovanje pristojnost kultura obrazovanje škola učitelj učenik student profesor predavanje seminar radionica vježba test ispit ocjena svjedodžba diploma certifikat akademija fakultet sveučilište institut znanstvenik istraživač ekspert stručnjak mentor instruktor trener sportaš natjecanje turnir utakmica rezultat pobjeda poraz bod gol koš set poen rekord statistika analiza strategija taktika plan priprema trening vježbanje kondicija snaga izdržljivost brzina agilnost fleksibilnost tehnika stil forma pravila sudac penal prekršaj crveni karton žuti karton kazneni udarac slobodni udarac aut korner centarfor vratar obrana napad vezni igrač igračica ekipa momčad kapetan trener pomoćnik navijač stadion tribina atmosfera uzbuđenje emocija radost tuga bijes razočaranje slavlje trofej medalja pehar priznanje nagrada ceremonija govor zahvala inspiracija motivacija strast trud rad uspjeh upornost ambicija vizija san cilj strategija plan taktika pristup metoda tehnika eksperiment inovacija kreativnost originalnost individualnost osobnost karakter temperament talent vještina znanje iskustvo praksa disciplina fokus koncentracija pažnja percepcija intuicija logika analiza sinteza zaključivanje rješavanje problema donošenje odluka procjena vrednovanje mišljenje stav uvjerenje vrijednosti moral etika pravda zakon pravila društvo zajednica kultura običaji tradicija identitet povijest naslijeđe baština umjetnost znanost tehnologija ekologija priroda okoliš održivost klima vrijeme meteorologija temperatura vjetar kiša snijeg sunce magla oluja nevrijeme poplava suša požar potres vulkan tsunami planine rijeke jezera mora oceani otoci kontinenti države gradovi sela naselja ulice ceste mostovi tuneli željeznice luke aerodromi prijevoz vozila automobili bicikli autobusi tramvaji vlakovi brodovi avioni rakete sateliti svemir teleskopi astronomija astrologija fizika kemija biologija medicina farmacija genetika psihologija sociologija ekonomija politika pravo filozofija lingvistika matematika informatika računalstvo programiranje inženjerstvo arhitektura građevina dizajn moda umjetnost glazba književnost kazalište film fotografija mediji vijesti informacije komunikacija internet društvene mreže tehnologija inovacije istraživanja eksperimenti razvoj napredak budućnost]
-Make "newlist [e k s p e r t]
+Make "newlist [_ o _ _ a _]
 Make "odabir 2
-Make "p [202.76457 1.022224]
+Make "p [217.764569 1.022224]
 Make "pob "NE
-Make "pog "r
-Make "pogodeno [e k s p e r t]
+Make "pog "e
+Make "pogodeno [_ o _ _ a _]
 Make "ppp [210.174789 -83.832138]
-Make "rijec "ekspert
-Make "slova [a t p d s o k e r]
+Make "rijec "momčad
+Make "slova [a o i r p s t k e]
