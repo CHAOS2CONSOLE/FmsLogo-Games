@@ -9,7 +9,7 @@ With more time more logos evolved, thus leading to FmsLogo.
 
 ### What is FmsLogo?
 If you dont know what is FmsLogo, It is a programming language made by David Costanzo.
-It was made october eleventh 2005.
+It was made October eleventh 2005.
 The most recent version was on the fifth of April 2022.
 FmsLogo evolved from MSWLogo. 
 
@@ -20,7 +20,7 @@ FmsLogo games is a library of games, such as:
 Hangman,
 Platformer,
 Tic tac toe,
-Snake,
+Snake and
 Bubble shooter
 
 We made these games due to the lack of sources for FmsLogo, in fact, the only source that is useful for high level programming 
