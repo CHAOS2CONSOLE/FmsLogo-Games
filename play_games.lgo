@@ -1,6 +1,7 @@
 to izabrao :program
 	localmake "program (word :program ".lgo)
-	
+	make "program (word "Igre/ :program)
+
 	cs
 	windowdelete "main
 	
@@ -28,7 +29,7 @@ to main
 	buttoncreate "main "tictactoe [tic tac toe] 400+:toAdd 0 :width :height [izabrao "TICTACTOE]
 end
 
-Make "startup [main]
 Make "height 50
+Make "startup [main]
 Make "toadd 150
 Make "width 120
