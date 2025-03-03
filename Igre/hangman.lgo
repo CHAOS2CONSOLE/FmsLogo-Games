@@ -1,0 +1,218 @@
+﻿to CRTANJE :n
+  if :n=1[glava]
+  if :n=2[vrat]
+  if :n=3[rukar]
+  if :n=4[rukal]
+  if :n=5[tijelo]
+  if :n=6[nogar]
+  if :n=7[nogal]
+end
+
+to GLAVA
+  rt 180
+  arc2 165 30
+  pu arc2 30 30 pd
+  arc2 165+165 30
+end
+
+to hangman
+  make "l [rada medalja trofej uspomena fotografija slika portret pejzaž skulptura mozaik freska tapiserija maska lutka marioneta kazalište drama komedija tragedija opera balet glazba instrument gitara klavir violina bubanj flauta saksofon orkestar dirigent koncert festival predstava scena pozornica publika aplauz zvučnik mikrofon pjesma melodija ritam harmonija akord ton visina trajanje glas vokal solist zbor bend bendžist pjevač tekstopisac skladatelj producent studio snimanje montaža video film kamera režiser scenarist scenarij glumac glumica uloga dijalog monolog replika radnja zaplet vrhunac rasplet kraj početak uvod razvoj opis atmosfera motiv inspiracija ekspresija stil tehnika forma struktura kompozicija boja svjetlost sjena perspektiva dimenzija prostor dubina iluzija stvarnost apstrakcija simbol metafora alegorija ironija humor sarkazam kritika analiza interpretacija dojam refleksija reakcija zaključak mišljenje stav argument dokaz primjer činjenica hipoteza teorija zakon pravilo eksperiment istraživanje metoda procedura strategija cilj plan organizacija sustav struktura funkcija proces evolucija revolucijski tradicionalni inovativni klasični moderni suvremeni budućnost vizija perspektiva mogućnost prilika izazov problem rješenje kompromis alternativa opcija odluka izbor sudbina šansa rizik sigurnost zaštita osiguranje pravilo zakon etika moral odgovornost disciplina red poštovanje pristojnost kultura obrazovanje škola učitelj učenik student profesor predavanje seminar radionica vježba test ispit ocjena svjedodžba diploma certifikat akademija fakultet sveučilište institut znanstvenik istraživač ekspert stručnjak mentor instruktor trener sportaš natjecanje turnir utakmica rezultat pobjeda poraz bod gol koš set poen rekord statistika analiza strategija taktika plan priprema trening vježbanje kondicija snaga izdržljivost brzina agilnost fleksibilnost tehnika stil forma pravila sudac penal prekršaj crveni karton žuti karton kazneni udarac slobodni udarac aut korner centarfor vratar obrana napad vezni igrač igračica ekipa momčad kapetan trener pomoćnik navijač stadion tribina atmosfera uzbuđenje emocija radost tuga bijes razočaranje slavlje #trofej medalja pehar priznanje nagrada ceremonija govor zahvala inspiracija motivacija strast trud rad uspjeh upornost ambicija vizija san cilj strategija plan taktika pristup metoda tehnika eksperiment inovacija kreativnost originalnost individualnost osobnost karakter temperament talent vještina znanje iskustvo praksa disciplina fokus koncentracija pažnja percepcija intuicija logika analiza sinteza zaključivanje rješavanje problema donošenje odluka procjena vrednovanje mišljenje stav uvjerenje vrijednosti moral etika pravda zakon pravila društvo zajednica kultura običaji tradicija identitet povijest naslijeđe baština umjetnost znanost tehnologija ekologija priroda okoliš održivost klima vrijeme meteorologija temperatura vjetar kiša snijeg sunce magla oluja nevrijeme poplava suša požar potres vulkan tsunami planine rijeke jezera mora oceani otoci kontinenti države gradovi sela naselja ulice ceste mostovi tuneli željeznice luke aerodromi prijevoz vozila automobili bicikli autobusi tramvaji vlakovi brodovi avioni rakete sateliti svemir teleskopi astronomija astrologija fizika kemija biologija medicina farmacija genetika psihologija sociologija ekonomija politika pravo filozofija lingvistika matematika informatika računalstvo programiranje inženjerstvo arhitektura građevina dizajn moda umjetnost glazba književnost kazalište film fotografija mediji vijesti informacije komunikacija internet društvene mreže tehnologija inovacije istraživanja eksperimenti razvoj napredak budućnost]
+  cs ct ht pd ss
+  print (se[Iskociti ce vam tab u koji trebate upisati sljedece:])
+  print (se['1' ako zelite upute za igru])
+  print (se['2' ako zelite poceti igru])
+  make "odabir readword
+  while [:odabir=1] [
+    print(")
+    print (se[1. biti ce izabrana jedna rijec])
+    print (se[2. vi morate pogadjati slova u toj rijeci])
+    print (se[3. za svaku pogresku bit ce nacrtan jedan dio tijela])    
+    print (se[4. imate pravo na 7 pogresaka])
+    print (se[6. ako pogodite rijec pobjedjujete])
+    print (se[6. ako lik bude cijeli nacrtan i postane crn, tada ste izgubili])
+    print(")
+    print(se[Odaberite ponovno])
+    make "odabir readword
+	]
+  vjesalica
+  print(se[Rijec je odabrana!])
+  print(se[Igra pocinje!])
+  make "pogodeno []
+  MAKE "rijec (ITEM ((RANDOM COUNT :l) + 1) :l)
+  REPEAT COUNT :rijec [MAKE "pogodeno LPUT "_ :pogodeno]
+  pr :pogodeno
+  MAKE "greske 0
+  make "pob "NE
+  make "flag 0
+  make "cnt count :rijec
+  make "slova []
+
+  while [:flag=0][
+    make "pog readword
+    ifelse memberp :pog :slova [
+      PR (SENTENCE "To "slovo "ste "vec "pogadjali)
+    ][
+    ifelse memberp :pog :rijec [
+      PR (SENTENCE "Pogodili "ste "slovo)
+      for [i 1 :cnt][
+        if (item :i :rijec)=:pog[
+          make "pogodeno replace_item :pogodeno :i :pog
+        ]
+      ]
+    ][
+     PR (SENTENCE "Niste "pogodili "slovo)
+      make "greske :greske + 1
+      crtanje :greske
+     ]
+    print :pogodeno
+    MAKE "SLOVA LPUT :POG :SLOVA
+    ]
+    if not(memberp "_ :pogodeno)[make "flag 1]
+    if :greske>6[make "flag 1]
+  ]
+  pu setxy 400 0 pd seth 90
+  ifelse :greske>6 [
+    label (sentence "izgubili "ste )
+    pr(sentence "Rijec "je "bila :rijec)
+  ][label (sentence "pobijedili "ste)]
+end
+
+to NOGAL
+  pu setpos :ppp 
+  setxy xcor+7 ycor+10
+  seth 180 pd 
+  lt 30
+  fd 70
+  rt 90
+  fd 12
+  setpos :ppp
+  seth 180 fd 1
+  pu sety ycor+3 
+  setfc "black fill
+end
+
+to NOGAR
+  rt 30
+  fd 70
+  lt 90
+  fd 12
+  lt 90
+  setpos :ppp
+end
+
+TO replace_item :lst :index :newval
+  MAKE "newlist []
+  make "c (COUNT :lst)  
+  FOR [i 1 :c 1] [
+    IFELSE :i = :index [
+      MAKE "newlist LPUT :newval :newlist 
+    ][
+      MAKE "newlist LPUT (ITEM :i :lst) :newlist  
+    ]
+  ]
+  OUTPUT :newlist 
+END
+
+to RUKAL
+  make "p pos
+  lt 40
+  fd 60
+  rt 90
+  fd 10
+  rt 90
+  fd 49
+  seth 180
+end
+
+to RUKAR 
+  make "p pos
+  rt 40
+  fd 60
+  lt 90
+  fd 10
+  lt 90
+  fd 49
+  pu setpos :p seth 90
+  fd 15
+  rt 90 pd 
+end
+
+to TIJELO
+  fd 60
+  pu setxy xcor-14 ycor+60 pd 
+  fd 60
+  pu setxy xcor+7 ycor-10
+  make "ppp pos 
+  pu setxy xcor-7 ycor+10 pd
+end
+
+to VJESALICA
+  setpc "brown
+  cs pu setxy 220 130 pd
+  fd 60
+  lt 90
+  fd 230
+  lt 90
+  fd 350
+  rt 90
+  fd 80
+  lt 90
+  fd 20
+  lt 90 
+  fd 180
+  lt 90
+  fd 20
+  lt 90
+  fd 80
+  rt 90
+  fd 330
+  rt 90
+  fd 190
+  rt 90
+  fd 40
+  lt 90
+  fd 20
+  pu setxy 219 131
+  setfc [139 69 19] fill
+  setxy 220 130
+  setpc "black
+  seth -90
+  fd 6
+  lt 90 fd 1 pd fd 49 bk 49
+  pu bk 1
+  rt 90
+  fd 8
+  lt 90 fd 1 pd 
+  fd 49
+  lt 90 fd 8
+  pu setxy xcor-2 ycor+2 setfc [136 90 30] fill
+  setxy xcor+2 ycor-2
+  seth 0 pd
+  lt 90
+  fd 4
+end
+
+to VRAT
+  seth 180
+  fd 20
+  pu setxy xcor-15 ycor+20 pd 
+  fd 20
+end
+
+Make "." "c
+Make "aaa 123
+Make "c 6
+Make "cnt 6
+Make "flag 1
+Make "greske 7
+Make "l [rada medalja trofej uspomena fotografija slika portret pejzaž skulptura mozaik freska tapiserija maska lutka marioneta kazalište drama komedija tragedija opera balet glazba instrument gitara klavir violina bubanj flauta saksofon orkestar dirigent koncert festival predstava scena pozornica publika aplauz zvučnik mikrofon pjesma melodija ritam harmonija akord ton visina trajanje glas vokal solist zbor bend bendžist pjevač tekstopisac skladatelj producent studio snimanje montaža video film kamera režiser scenarist scenarij glumac glumica uloga dijalog monolog replika radnja zaplet vrhunac rasplet kraj početak uvod razvoj opis atmosfera motiv inspiracija ekspresija stil tehnika forma struktura kompozicija boja svjetlost sjena perspektiva dimenzija prostor dubina iluzija stvarnost apstrakcija simbol metafora alegorija ironija humor sarkazam kritika analiza interpretacija dojam refleksija reakcija zaključak mišljenje stav argument dokaz primjer činjenica hipoteza teorija zakon pravilo eksperiment istraživanje metoda procedura strategija cilj plan organizacija sustav struktura funkcija proces evolucija revolucijski tradicionalni inovativni klasični moderni suvremeni budućnost vizija perspektiva mogućnost prilika izazov problem rješenje kompromis alternativa opcija odluka izbor sudbina šansa rizik sigurnost zaštita osiguranje pravilo zakon etika moral odgovornost disciplina red poštovanje pristojnost kultura obrazovanje škola učitelj učenik student profesor predavanje seminar radionica vježba test ispit ocjena svjedodžba diploma certifikat akademija fakultet sveučilište institut znanstvenik istraživač ekspert stručnjak mentor instruktor trener sportaš natjecanje turnir utakmica rezultat pobjeda poraz bod gol koš set poen rekord statistika analiza strategija taktika plan priprema trening vježbanje kondicija snaga izdržljivost brzina agilnost fleksibilnost tehnika stil forma pravila sudac penal prekršaj crveni karton žuti karton kazneni udarac slobodni udarac aut korner centarfor vratar obrana napad vezni igrač igračica ekipa momčad kapetan trener pomoćnik navijač stadion tribina atmosfera uzbuđenje emocija radost tuga bijes razočaranje slavlje trofej medalja pehar priznanje nagrada ceremonija govor zahvala inspiracija motivacija strast trud rad uspjeh upornost ambicija vizija san cilj strategija plan taktika pristup metoda tehnika eksperiment inovacija kreativnost originalnost individualnost osobnost karakter temperament talent vještina znanje iskustvo praksa disciplina fokus koncentracija pažnja percepcija intuicija logika analiza sinteza zaključivanje rješavanje problema donošenje odluka procjena vrednovanje mišljenje stav uvjerenje vrijednosti moral etika pravda zakon pravila društvo zajednica kultura običaji tradicija identitet povijest naslijeđe baština umjetnost znanost tehnologija ekologija priroda okoliš održivost klima vrijeme meteorologija temperatura vjetar kiša snijeg sunce magla oluja nevrijeme poplava suša požar potres vulkan tsunami planine rijeke jezera mora oceani otoci kontinenti države gradovi sela naselja ulice ceste mostovi tuneli željeznice luke aerodromi prijevoz vozila automobili bicikli autobusi tramvaji vlakovi brodovi avioni rakete sateliti svemir teleskopi astronomija astrologija fizika kemija biologija medicina farmacija genetika psihologija sociologija ekonomija politika pravo filozofija lingvistika matematika informatika računalstvo programiranje inženjerstvo arhitektura građevina dizajn moda umjetnost glazba književnost kazalište film fotografija mediji vijesti informacije komunikacija internet društvene mreže tehnologija inovacije istraživanja eksperimenti razvoj napredak budućnost]
+Make "newlist [_ o _ _ a _]
+Make "odabir 2
+Make "p [217.764569 1.022224]
+Make "pob "NE
+Make "pog "e
+Make "pogodeno [_ o _ _ a _]
+Make "ppp [210.174789 -83.832138]
+Make "rijec "momčad
+Make "slova [a o i r p s t k e]
+make "startup [hangman]

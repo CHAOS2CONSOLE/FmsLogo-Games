@@ -1,0 +1,116 @@
+to exit
+	bye
+end
+
+to getamount :x :l
+localmake "c (list)
+repeat count :l [if (item repcount :l)=:x [make "c lput repcount :c]]
+op :c
+end
+
+to plots :n :a
+cs
+repeat :n [
+	repeat :n [
+		repeat 4 [
+			fd :a
+			rt 90	
+			]
+		fd :a
+		]
+	bk :a*:n
+	rt 90
+	fd :a
+	lt 90
+	]
+home
+end
+
+to provjeri :lastinput :input
+if (and (or :lastinput = 87 :lastinput = 38) (or :input = 83 :input = 40)) [op :lastinput]
+if (and (or :lastinput = 37 :lastinput = 65) (or :input = 68 :input = 39)) [op :lastinput]
+if (and (or :lastinput = 83 :lastinput = 40) (or :input = 87 :input = 38)) [op :lastinput]
+if (and (or :lastinput = 39 :lastinput = 68) (or :input = 65 :input = 37)) [op :lastinput]
+op :input
+end
+
+to retry
+	cs ht pu
+	rt 90
+	label [Try again?]
+	BUTTONCREATE "main "b1 "YES -100 -100 50 50 [YES]
+	BUTTONCREATE "main "b2 "EXIT 100 -100 50 50 [EXIT]
+end
+
+to SNAKE
+localmake "n 9
+ht
+;fullscreen
+;icon "commander
+;maximize "FMSLogo
+setfocus [Fmslogo]
+local "k
+localmake "x 20*(int :n/2)
+localmake "y 0
+localmake "lz (list (list :x :y)) 
+localmake "lh (list)
+make "k 87
+(KEYBOARDON [make "k provjeri :k keyboardvalue][])
+make "i 1
+localmake "go 1
+repeat 3 [
+	cs ht pu rt 90
+	LABEL 4-#
+	wait 50
+]
+cs ht pu rt 90
+LABEL "GO!
+wait 50
+while [:go=1] [
+	pd plots :n 20
+	if (or :k = 87 :k = 38) [make "lz (lput (list :x :y+20) :lz) make "y :y+20] 
+	if (or :k = 83 :k = 40) [make "lz (lput (list :x :y-20) :lz) make "y :y-20]
+	if (or :k = 37 :k = 65) [make "lz (lput (list :x-20 :y) :lz) make "x :x-20]
+	if (or :k = 68 :k = 39)  [make "lz (lput (list :x+20 :y) :lz) make "x :x+20]
+	pu
+	setpos item (count :lz) :lz
+	ifelse (count getamount (list (item 1 pos)+2 (item 2 pos)+2) :lh) > 0 [
+		localmake "temp (getamount (list (item 1 pos)+2 (item 2 pos)+2) :lh)
+		localmake "temp1 (list)
+		repeat count :lh [
+			if (item 1 :temp) <> repcount [make "temp1 lput (item repcount :lh) :temp1]
+			]
+		make "lh :temp1
+		] [if :lz = (list) [make "lz (list "bok:P)]make "lz bf :lz]
+	if :x < 0 [make "go 0]
+	if :x > 20*:n [make "go 0]
+	if :y > 20*:n [make "go 0]
+	if :y < 0 [make "go 0]	
+	if (count getamount (item (count :lz) :lz) :lz) > 1 [make "go 0] 
+	if (remainder :i 4)=0 [make "lh lput (list 20*(random :n)+2 20*(random :n)+2) :lh]
+	repeat count :lh [setpos (item repcount :lh) setfc "lime fill]
+	;setxy 20*(random 8)+2 20*(random 8)+2 setfc "lime fill
+	repeat count :lz [setpos (item repcount :lz) setxy xcor+2 ycor+2 ifelse (repcount = count :lz) [setfc "yellow][setfc "green] fill]
+	pu setxy (20*:n)/2 20*(:n+1)
+	seth 90 pd
+	label 10-(remainder (count :lz) 10) 
+	wait 10
+	make "n (int (count :lz)/10)+9
+	make "i :i+1
+	]
+retry
+setfc "white
+if :x < 0 [fill]
+if :x > 20*:n [fill]
+if :y > 20*:n [fill]
+if :y < 0 [fill]	
+end
+
+to yes
+	WINDOWDELETE "main
+	SNAKE
+end
+
+Make "i 11
+Make "k 68
+Make "startup [SNAKE]
