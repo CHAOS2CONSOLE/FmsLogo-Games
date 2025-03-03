@@ -1,4 +1,4 @@
-Dnevnik Rada: Razvoj FMS Logo Igrice
+#Dnevnik Rada: Razvoj FMS Logo Igrice
 Projekt: Razvijanje FMS Logo Igrice
 Početak projekta: 24. siječnja 2025.
 Završetak projekta: 28. veljače 2025.
