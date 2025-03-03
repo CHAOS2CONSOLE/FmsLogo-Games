@@ -77,9 +77,9 @@ to left_p
 end
 
 to main
-	ts 
-	minimize [Commander]
-	maximize [FMSLogo]
+	;ts 
+	;minimize [Commander]
+	;maximize [FMSLogo]
 	setfocus [FMSLogo]
 	window
 

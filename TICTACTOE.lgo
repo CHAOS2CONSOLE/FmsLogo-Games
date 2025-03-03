@@ -262,3 +262,4 @@ Make "r1 ["1 "2 "3]
 Make "r2 ["4 "5 "6]
 Make "r3 ["7 "8 "9]
 Make "test ".
+Make "startup [tictactoe]

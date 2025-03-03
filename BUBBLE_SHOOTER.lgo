@@ -1,17 +1,17 @@
 ﻿to bubble_shooter
 	cs ct 
-	PR (se "Dobro "došli "u "BUBBLE "SHOOTER "!)
-	PR (se "Očekujte "dobru "zabavu "!)
-	PR ("-----------------------------------------)
+	PR [Dobro došli u BUBBLE SHOOTER !]
+	PR [Očekujte dobru zabavu !]
+	PR [-----------------------------------------]
 	wait 150 PR (se "PRAVILA "IGRE)
-	PR (se "- "Ako "želite "naciljati "na "balon "kliknite "i "držite "P)
-	PR (se "- "Nakon "toga "kliknite "Z "da "se "balon "probuši)
-	PR ("-----------------------------------------)
-	wait 150 PR (se "Morate "izabrati "koliko "balona "želite ":)
-	make "n readword
-	wait 100 PR ("-----------------------------------------)
-	PR (se "Neka "igra "započne "!)
-	PR ("-----------------------------------------)
+	PR [Ako želite naciljati na balon kliknite i držite P]
+	PR [Nakon toga kliknite Z da se balon probuši]
+	PR [-----------------------------------------]
+	wait 150 PR [Morate izabrati koliko redova balona želite]
+	localmake "n readword
+	wait 100 PR [-----------------------------------------]
+	PR [Neka igra započne !]
+	PR [-----------------------------------------]
 	navigacija :n 
 	
 end 
@@ -25,16 +25,18 @@ end
 to mjehurici :n 
 	make "boje [red green blue purple]
 	repeat :n [
-	make "p pos
-	repeat 10 [
-	make "slucajno pick :boje
-	setpc "black
-	setfc :slucajno
-	pd circle 12.5
-	fill 
-	rt 90 pu fd 25 pd lt 90]
-	pu setpos :p  
-	bk 25]
+	localmake "p pos
+		repeat 10 [
+			make "slucajno pick :boje
+			setpc "black
+			setfc :slucajno
+			pd circle 12.5
+			fill 
+			rt 90 pu fd 25 pd lt 90
+		]
+		pu setpos :p  
+		bk 25
+	]
 end 
 
 to navigacija :n
@@ -88,3 +90,4 @@ Make "l [-13 451]
 Make "n 2
 Make "p [-112.499999 452.499999]
 Make "slucajno "blue
+Make "startup [bubble_shooter]
