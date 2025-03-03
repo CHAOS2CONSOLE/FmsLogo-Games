@@ -67,11 +67,10 @@ Kao i svaki razvojni tim, susreli smo se s izazovima:
 Ograničenja FmsLogo – Morali smo smisliti kreativne načine za implementaciju naprednih funkcionalnosti.
 Optimizacija koda – Pobrinuli smo se da igre budu što brže i fluidnije.
 Testiranje – Svaka igra je detaljno testirana kako bi se otkrile i ispravile eventualne greške.
-Zaključak
+### Zaključak
 Projekt "Video igre u FmsLogo" pokazao je da se čak i u jeziku koji se smatra jednostavnim mogu izraditi kompleksne i interaktivne igre.
 
 Naš cilj bio je ne samo stvoriti igre već i pridonijeti zajednici, pružajući resurse i inspiraciju drugima. Vjerujemo da ovaj projekt može poslužiti kao temelj za daljnja istraživanja i razvoj u FmsLogo, te nadamo se da će potaknuti i druge da istraže mogućnosti ovog zanimljivog programskog jezika.
-
 
 
 
