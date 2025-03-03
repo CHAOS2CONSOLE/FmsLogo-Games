@@ -1,5 +1,5 @@
 ﻿to bubble_shooter
-	cs ct 
+	cs ct ss
 	PR [Dobro došli u BUBBLE SHOOTER !]
 	PR [Očekujte dobru zabavu !]
 	PR [-----------------------------------------]
