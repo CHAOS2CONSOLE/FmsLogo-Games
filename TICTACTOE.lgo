@@ -158,7 +158,7 @@ TO replace_item :lst :index :newval
 END
 
 to tictactoe
-cs ct pd ht
+cs ct pd ht ss
 print (se[Iskociti će vam tab u koji trebate upisati sljedeće:])
 print (se['1' ako želite upute za igru])
 print (se['2' ako želite početi igru])
