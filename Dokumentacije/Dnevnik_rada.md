@@ -1,11 +1,8 @@
 # Dnevnik Rada: Razvoj FMS Logo Igrice
 ### Info:
 - Projekt: Razvijanje FMS Logo Igrice
-
 - Početak projekta: 24. siječnja 2025.
-
 - Završetak projekta: 28. veljače 2025.
-
 - Tim: 3 osobe
 
 - Cilj: Razviti tri igre koristeći FMS Logo programski jezik.
