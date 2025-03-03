@@ -61,14 +61,13 @@ Mateo – Hangman, tic tac toe
 
 ### Način komunikacije
 Redoviti sastanci uživo i online kako bismo raspravili napredak i izazove.
-Korištenje digitalnih alata za razmjenu ideja i dokumentaciju.
+Korištenje digitalnih alata za razmjenu ideja i dokumentaciju (npr. github).
 Aktivna suradnja u rješavanju problema, dijeljenju znanja i optimizaciji koda.
 Izazovi i rješenja
 Kao i svaki razvojni tim, susreli smo se s izazovima:
 
 Ograničenja FmsLogo – Morali smo smisliti kreativne načine za implementaciju naprednih funkcionalnosti.
-Optimizacija koda – Pobrinuli smo se da igre budu što brže i fluidnije.
-Testiranje – Svaka igra je detaljno testirana kako bi se otkrile i ispravile eventualne greške.
+Optimizacija koda – Napravili smo se da igre budu što brže i fluidnije.
 ### Zaključak
 Projekt "Video igre u FmsLogo" pokazao je da se čak i u jeziku koji se smatra jednostavnim mogu izraditi kompleksne i interaktivne igre.
 
