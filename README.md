@@ -1,7 +1,5 @@
 # Video games in FmsLogo
 
-### Work in progress!!!
-
 Welcome to Video games in FmsLogo. This was made for a competition held in Croatia (hr. razvoj softwera).
 
 ### What is Logo?
@@ -19,14 +17,14 @@ FmsLogo evolved from MSWLogo.
 Us three, Filip (aka me), Linda and Mateo, using our knowledge in FmsLogo, made FmsLogo games.
 
 FmsLogo games is a library of games, such as:
-Hangman
-Platformer
-Tic tac toe
-Snake
+Hangman,
+Platformer,
+Tic tac toe,
+Snake,
 Bubble shooter
 
 We made these games due to the lack of sources for FmsLogo, in fact, the only source that is useful for high level programming 
 in FmsLogo is the index that is built into FmsLogo.
 
 We also made this not to only prove that in FmsLogo you can create video games, but that even logo programming launguages can be complex
-and high level.
+and high level to some degree.
