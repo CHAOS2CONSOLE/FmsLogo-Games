@@ -8,8 +8,8 @@ to izabrao :program
 end
 
 to main
-	;ts
-	;minimize [Commander]
+	ts
+	minimize [Commander]
 	setfocus [FMSLogo]
 
 	windowdelete "main
@@ -28,6 +28,7 @@ to main
 	buttoncreate "main "tictactoe [tic tac toe] 400+:toAdd 0 :width :height [izabrao "TICTACTOE]
 end
 
+Make "startup [main]
 Make "height 50
 Make "toadd 150
 Make "width 120

@@ -46,7 +46,7 @@ to SNAKE
 localmake "n 9
 ht
 ;fullscreen
-,icon "commander
+;icon "commander
 ;maximize "FMSLogo
 setfocus [Fmslogo]
 local "k
