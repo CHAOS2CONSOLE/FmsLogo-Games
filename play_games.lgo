@@ -1,0 +1,33 @@
+to izabrao :program
+	localmake "program (word :program ".lgo)
+	
+	cs
+	windowdelete "main
+	
+	load :program
+end
+
+to main
+	;ts
+	;minimize [Commander]
+	setfocus [FMSLogo]
+
+	windowdelete "main
+
+	cs ht
+	pu setxy 150 100 pd
+	seth 90
+	make "width 120
+	make "height 50
+	make "toAdd 150
+	label [Izaberi igru.]
+	buttoncreate "main "platformer [platformer] -400+:toAdd 0 :width :height [izabrao "PLATFORMER]
+	buttoncreate "main "hangman [hangman] -200+:toAdd 0 :width :height [izabrao "HANGMAN]
+	buttoncreate "main "snake [snake] 0+:toAdd 0 :width :height [izabrao "SNAKE]
+	buttoncreate "main "bubble [bubble shooter] 200+:toAdd 0 :width :height [izabrao "BUBBLE_SHOOTER]	
+	buttoncreate "main "tictactoe [tic tac toe] 400+:toAdd 0 :width :height [izabrao "TICTACTOE]
+end
+
+Make "height 50
+Make "toadd 150
+Make "width 120
