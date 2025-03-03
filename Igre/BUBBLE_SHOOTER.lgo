@@ -1,17 +1,18 @@
 ﻿to bubble_shooter
-	cs ct ss
+	st cs ct ss
 	PR [Dobro došli u BUBBLE SHOOTER !]
 	PR [Očekujte dobru zabavu !]
 	PR [-----------------------------------------]
-	wait 150 PR (se "PRAVILA "IGRE)
+	wait 200 PR (se "PRAVILA "IGRE)
 	PR [Ako želite naciljati na balon kliknite i držite P]
 	PR [Nakon toga kliknite Z da se balon probuši]
 	PR [-----------------------------------------]
-	wait 150 PR [Morate izabrati koliko redova balona želite]
+	wait 250 PR [Morate izabrati koliko redova balona želite]
 	localmake "n readword
-	wait 100 PR [-----------------------------------------]
+	wait 200 PR [-----------------------------------------]
 	PR [Neka igra započne !]
 	PR [-----------------------------------------]
+	MOUSEON [pritisnut] [] [] [] []
 	navigacija :n 
 	
 end 
@@ -42,18 +43,20 @@ end
 to navigacija :n
 	make "cz 0 
 	zajedno :n 
-	(keyboardon [nesto][nesto2])
+	pu nestodrugo 
 end
 
-to nesto 
-	make "l []
-	if keyboardvalue = ascii "P [pu MOUSEON [SETPOS MOUSEPOS PENDOWN] [PENUP] [] [] [SETPOS MOUSEPOS]]
-	if keyboardvalue = ascii "Z [
+to pritisnut
+	pu setpos mousepos pd
+	nestodrugo
+	if (not and pixel = [0 0 0] pixel = [255 255 255])[
+		pr pixel
+		make "l []
 		pu setpc "black
 		setfc "black 
 		make "l lput xcor :l 
 		make "l lput ycor :l
-		wait 20 MOUSEOFF pu home 
+		wait 20 pu home 
 		setpos :l seth 0 
 		make "color pixel 
 		make "c 0 
@@ -64,14 +67,14 @@ to nesto
 		pu bk 25*:c 
 		while [pixel = :color][pu fd 0.1]
 		pu bk 12.5 
-		repeat :c [setpc "black circle 12.5 setfc "black fill pu fd 25 pd]
+		repeat :c [setpc "black pd circle 12.5 setfc "black  pu fd 25 pd]
 		make "cz :cz+:c 
-		pr (se "SCORE: :cz)
-		]
-end
+		pr (se "SCORE: :cz) 
+	]
 
-to nesto2
-	if keyboardvalue = ascii "P [wait 20 MOUSEOFF pu home pd]
+
+
+
 end 
 
 to zajedno :n 
@@ -84,10 +87,10 @@ end
 
 Make "boje [red green blue purple]
 Make "c 1
-Make "color [0 128 0]
-Make "cz 7
-Make "l [-13 451]
+Make "color [0 0 0]
+Make "cz 1
+Make "l [0 0]
 Make "n 2
 Make "p [-112.499999 452.499999]
-Make "slucajno "blue
+Make "slucajno "green
 Make "startup [bubble_shooter]
