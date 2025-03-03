@@ -1,19 +1,22 @@
-﻿to bubble_shooter
+﻿to bubble_shooter [:n 5]
 	st cs ct ss
 	PR [Dobro došli u BUBBLE SHOOTER !]
 	PR [Očekujte dobru zabavu !]
 	PR [-----------------------------------------]
-	wait 200 PR (se "PRAVILA "IGRE)
-	PR [Ako želite naciljati na balon kliknite i držite P]
-	PR [Nakon toga kliknite Z da se balon probuši]
+	wait 100
+	PR [PRAVILA IGRE]
+	PR [Ako želite naciljati na balon kliknite na njega]
+	PR [Odmah će se ostali baloni uokolo probušiti uz njega]
+	PR [Nemožeš probušiti balone koje imaju balone ispod sebe]
+	wait 100 
 	PR [-----------------------------------------]
-	wait 250 PR [Morate izabrati koliko redova balona želite]
-	localmake "n readword
-	wait 200 PR [-----------------------------------------]
 	PR [Neka igra započne !]
 	PR [-----------------------------------------]
+	make "n 5
 	MOUSEON [pritisnut] [] [] [] []
-	navigacija :n 
+	napravi_balone :n
+	make "bodovi 0 
+	nacrtaj :n 
 	
 end 
 
@@ -23,74 +26,108 @@ to kvadrat
 	repeat 2 [fd 490 rt 90 fd 250 rt 90]
 end
 
-to mjehurici :n 
-	make "boje [red green blue purple]
-	repeat :n [
-	localmake "p pos
-		repeat 10 [
-			make "slucajno pick :boje
-			setpc "black
-			setfc :slucajno
-			pd circle 12.5
-			fill 
-			rt 90 pu fd 25 pd lt 90
-		]
-		pu setpos :p  
-		bk 25
-	]
-end 
-
-to navigacija :n
-	make "cz 0 
-	zajedno :n 
-	pu nestodrugo 
-end
-
-to pritisnut
-	pu setpos mousepos pd
-	nestodrugo
-	if (not and pixel = [0 0 0] pixel = [255 255 255])[
-		pr pixel
-		make "l []
-		pu setpc "black
-		setfc "black 
-		make "l lput xcor :l 
-		make "l lput ycor :l
-		wait 20 pu home 
-		setpos :l seth 0 
-		make "color pixel 
-		make "c 0 
-		while [pixel = :color][
-			pu fd 25
-			make "c :c+1
-		]
-		pu bk 25*:c 
-		while [pixel = :color][pu fd 0.1]
-		pu bk 12.5 
-		repeat :c [setpc "black pd circle 12.5 setfc "black  pu fd 25 pd]
-		make "cz :cz+:c 
-		pr (se "SCORE: :cz) 
-	]
-
-
-
-
-end 
-
-to zajedno :n 
+to nacrtaj :n
+	cs
 	setpc "black
 	pd kvadrat fd 490
 	bk 12.5 rt 90 pu fd 12.5 seth 0 
-	pd mjehurici :n 
+	pd nacrtaj_balone :n 
 	pu home pd 
+end
+
+to nacrtaj_balone :n 
+	setpc "black
+	seth 90
+	localmake "startX xcor
+	localmake "ima_balon "false
+	repeat :n [
+		localmake "tn repcount
+		repeat 10 [
+			localmake "trenutni (:tn-1)*10+repcount
+			localmake "b (item :trenutni :baloni)
+			if (:b > -1) [
+				make "ima_balon "true
+				setfc (item :b :boja)
+				circle 12.5
+				fill 
+			]
+			pu fd 25 pd
+		]
+		pu setxy :startX ycor-25 pd
+	]
+	if (not :ima_balon) [
+		pr [POBJEDIO SI!!!]
+		pr (se [Imas] :bodova [bodova!!!])
+		MOUSEOFF
+	]
 end 
 
+to napravi_balone :n
+	make "boja [[255 0 0] [0 128 0] [0 0 255] [128 0 128]] ;[red green blue purple]
+	localmake "m (count :boja)
+	make "baloni []
+	repeat :n*10 [
+		(rerandom (random 100000))
+		localmake "rand (random :m)+1
+		make "baloni lput :rand :baloni
+	]
+end
+
+to pritisnut
+	localmake "mp mousepos
+	pu setpos :mp
+	if (or pixel = [0 0 0] pixel = [255 255 255]) [stop]
+	seth 0
+	pu bk 25
+	if (not or pixel = [0 0 0] pixel = [255 255 255]) [stop]
+	fd 25
+	
+	localmake "tb pixel
+	localmake "x (int ((first :mp)+125)/25)+1
+	localmake "y int (abs (last :mp)-490)/25
+	
+	localmake "bfs (list (list :x :y))
+	make "visited []
+	while [(count :bfs) > 0] [
+		localmake "pos pop "bfs
+		if (not memberp :pos :visited) [
+			make "visited lput :pos :visited
+			
+			localmake "x (first :pos)
+			localmake "y (last :pos)
+			
+			
+			localmake "i :x+10*:y
+			if (item :i :baloni) > -1 [
+				if (item (item :i :baloni) :boja) = :tb [
+
+					make "baloni (listtoarray :baloni)
+					setitem :i :baloni -1
+					make "baloni (arraytolist :baloni)
+					
+					make "bodovi :bodovi+5
+					if (:x > 1) [push "bfs (list :x-1 :y)]
+					if (:x < 10) [push "bfs (list :x+1 :y)]
+					if (:y > 0) [push "bfs (list :x :y-1)]
+					if (:y < :n-1) [push "bfs (list :x :y+1)]
+				]
+			]
+		]
+	]
+	pr (se [Bodovi su ti:] :bodovi)
+	nacrtaj :n
+end 
+
+Make "baloni [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]
+Make "bodovi 250
+Make "boja [[255 0 0] [0 128 0] [0 0 255] [128 0 128]]
 Make "boje [red green blue purple]
 Make "c 1
-Make "color [0 0 0]
-Make "cz 1
-Make "l [0 0]
-Make "n 2
+Make "color [0 128 0]
+Make "cz 0
+Make "l []
+Make "n 5
 Make "p [-112.499999 452.499999]
-Make "slucajno "green
+Make "slucajno "blue
 Make "startup [bubble_shooter]
+Make "visited [[9 0] [9 1] [10 0] [8 0]]
