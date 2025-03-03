@@ -53,8 +53,10 @@ Ovi koraci omogućili bi da naš projekt dugoročno raste i postane vrijedan res
 ### Suradnja i komunikacija tima
 Tijekom razvoja projekta koristili smo organizirani pristup timskom radu, s redovitim sastancima i podjelom igara.
 
-Filip – Platformer
+Filip – Platformer, snake
+
 Linda – Bubble shooter
+
 Mateo – Hangman, tic tac toe
 
 ### Način komunikacije
